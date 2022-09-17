@@ -9,7 +9,7 @@
         </el-header>
         <el-container>
             <el-aside class="side-panel">
-                <widget-panel />
+                <widget-panel :designer="designer" />
             </el-aside>
             <el-container class="center-layout-container">
                 <el-header class="toolbar-header">
@@ -17,7 +17,7 @@
                 </el-header>
                 <el-main class="form-widget-main">
                     <el-scrollbar class="container-scroll-bar">
-                        <v-form-widget></v-form-widget>
+                        <v-form-widget :designer="designer"></v-form-widget>
                     </el-scrollbar>
                 </el-main>
             </el-container>
@@ -33,6 +33,9 @@ import WidgetPanel from './widget-panel/index.vue'
 import SettingPanel from './setting-panel/index.vue'
 import ToolbarPanel from './toolbar-panel/index.vue'
 import VFormWidget from './form-widget/index.vue'
+
+import {createDesigner} from './designer'
+
 export default {
     name: 'XFormDesigner',
     components: {
@@ -41,6 +44,11 @@ export default {
         ToolbarPanel,
         VFormWidget,
     },
+    data() {
+        return {
+            designer: createDesigner()
+        }
+    }
 }
 </script>
 
