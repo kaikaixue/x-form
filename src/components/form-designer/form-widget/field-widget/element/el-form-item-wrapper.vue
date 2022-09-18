@@ -36,6 +36,7 @@ export default {
     },
     computed: {
         selected: function () {
+            console.log(this.designer.widgetList)
             return !!this.designer && this.field.id === this.designer.selectedId
         },
     },
