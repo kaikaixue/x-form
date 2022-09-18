@@ -1,10 +1,17 @@
 <template>
-    <div></div>
+    <div>
+        <component :is="input"></component>
+    </div>
 </template>
 
 <script>
 export default {
     name: 'form-widget',
+    data() {
+        return {
+            input: 'el-input',
+        }
+    },
 }
 </script>
 
