@@ -36,5 +36,4 @@ export default {
 };
 </script>
 
-<style scoped less="scss">
-</style>
+<style scoped less="scss"></style>

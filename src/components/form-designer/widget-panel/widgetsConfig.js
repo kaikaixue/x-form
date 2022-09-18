@@ -14,7 +14,7 @@ export const container = [
 
 export const basicFields = [
     {
-        id: 0,
+        id: 1,
         type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',
@@ -24,7 +24,7 @@ export const basicFields = [
         }
     },
     {
-        id: 1,
+        id: 2,
         type: 'button',
         title: '按钮',
         icon: 'el-icon-phone-outline',
@@ -52,7 +52,7 @@ export const basicFields = [
 
 export const advancedFields = [
     {
-        id: 0,
+        id: 3,
         type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',
@@ -65,7 +65,7 @@ export const advancedFields = [
 
 export const customFields = [
     {
-        id: 0,
+        id: 4,
         type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',

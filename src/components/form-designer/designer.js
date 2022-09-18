@@ -39,7 +39,6 @@ export function createDesigner (vueInstance) {
 
         copyNewFieldWidget (origin) {
             let newWidget = deepClone(origin)
-            // console.log(newWidget)
             let tempId = generateId()
 
             newWidget.id = newWidget.type.replace(/-/g, '') + tempId
@@ -47,8 +46,6 @@ export function createDesigner (vueInstance) {
             newWidget.options.label = newWidget.options.label || newWidget.type.toLowerCase()
 
             delete newWidget.displayName
-            // console.log(this.widgetList)
-            // this.widgetList.push(newWidget)
             return newWidget
         },
 
