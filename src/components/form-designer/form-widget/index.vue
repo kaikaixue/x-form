@@ -21,7 +21,7 @@
                     <component
                         :is="getWidgetName(element)"
                         :field="element"
-                        :designer="element"
+                        :designer="designer"
                         :key="element.id"
                         :parent-list="designer.widgetList"
                         :index-of-parent-list="index"
@@ -36,6 +36,7 @@
 
 <script>
 import Draggable from 'vuedraggable'
+import elementFieldComponents from '@/components/form-designer/form-widget/field-widget/element/index'
 
 export default {
     name: 'form-widget',
@@ -44,25 +45,29 @@ export default {
     },
     components: {
         Draggable,
+        ...elementFieldComponents
     },
     data() {
         return {
+            type: 'el',
             scrollerHeight: 0,
         }
     },
-    mounted() {},
+    mounted() {
+    },
     methods: {
         getWidgetName(widget) {
-            return widget.type
+            // return widget.type
+            return this.type + '-' + widget.type + '-widget' 
         },
         onDragStart() {},
         onDragEnd() {},
-        onDragAdd() {
+        onDragAdd(evt) {
             // console.log(evt)
-            // const newIndex = evt.newIndex
-            // if (this.designer.widgetList[newIndex]) {
-            //     this.designer.setSelected(this.designer.widgetList[newIndex])
-            // }
+            const newIndex = evt.newIndex
+            if (this.designer.widgetList[newIndex]) {
+                this.designer.setSelected(this.designer.widgetList[newIndex])
+            }
             // this.designer.emitHistoryChange()
             // this.designer.emitEvent('field-selected', null)
         },
@@ -76,8 +81,9 @@ export default {
     watch: {
         'designer.widgetList': {
             deep: true,
-            handler(val) {
-                console.log(val)
+            handler() {
+                // val
+                // console.log(val)
             },
         },
     },

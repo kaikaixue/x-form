@@ -2,7 +2,7 @@
 export const container = [
     {
         id: 0,
-        type: 'el-input',
+        type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',
         formItemFlag: true,
@@ -15,7 +15,7 @@ export const container = [
 export const basicFields = [
     {
         id: 0,
-        type: 'el-input',
+        type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',
         formItemFlag: true,
@@ -25,12 +25,27 @@ export const basicFields = [
     },
     {
         id: 1,
-        type: 'el-button',
+        type: 'button',
         title: '按钮',
         icon: 'el-icon-phone-outline',
         formItemFlag: false,
         options: {
-            name: ''
+            name: '',
+            size: '',
+            type: '',
+            plain: false,
+            text: false,
+            bg: false,
+            link: false,
+            round: false,
+            circle: false,
+            loading: false,
+            loadingIcon: 'Loading',
+            disabled: false,
+            icon: '',
+            autofocus: false,
+            nativeType: 'button',
+            autoInsertSpace: ''
         }
     }
 ]
@@ -38,7 +53,7 @@ export const basicFields = [
 export const advancedFields = [
     {
         id: 0,
-        type: 'el-input',
+        type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',
         formItemFlag: true,
@@ -51,7 +66,7 @@ export const advancedFields = [
 export const customFields = [
     {
         id: 0,
-        type: 'el-input',
+        type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',
         formItemFlag: true,

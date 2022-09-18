@@ -178,9 +178,10 @@ export default {
         checkFieldMove() {
             return true
         },
-        onBasicFieldDragEnd(evt) {
+        onBasicFieldDragEnd() {
+            // evt
             // this.designer.widgetList.splice(evt.newDraggableIndex, 1)
-            console.log(evt)
+            // console.log(evt)
         },
     },
 }

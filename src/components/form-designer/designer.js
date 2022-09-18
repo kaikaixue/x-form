@@ -39,7 +39,7 @@ export function createDesigner (vueInstance) {
 
         copyNewFieldWidget (origin) {
             let newWidget = deepClone(origin)
-            console.log(newWidget)
+            // console.log(newWidget)
             let tempId = generateId()
 
             newWidget.id = newWidget.type.replace(/-/g, '') + tempId
@@ -47,7 +47,7 @@ export function createDesigner (vueInstance) {
             newWidget.options.label = newWidget.options.label || newWidget.type.toLowerCase()
 
             delete newWidget.displayName
-            console.log(this.widgetList)
+            // console.log(this.widgetList)
             // this.widgetList.push(newWidget)
             return newWidget
         },
@@ -55,6 +55,26 @@ export function createDesigner (vueInstance) {
         addFieldByDbClick (widget) {
             let newWidget = deepClone(widget)
             this.widgetList.push(newWidget)
+        },
+
+        setSelected (selected) {
+            if (!selected) {
+                this.clearSelected()
+                return
+            }
+
+            this.selectWidget = selected
+
+            if (selected.id) {
+                this.selectedId = selected.id
+                this.selectedWidgetName = selected.options.name
+            }
+        },
+
+        clearSelected () {
+            this.selectedId = null
+            this.selectedWidgetName = null
+            this.selectWidget = {}
         }
     }
 }
