@@ -16,7 +16,10 @@
                     <toolbar-panel></toolbar-panel>
                 </el-header>
                 <el-main class="form-widget-main">
-                    <el-scrollbar class="container-scroll-bar">
+                    <el-scrollbar
+                        class="container-scroll-bar"
+                        :style="{ height: scrollerHeight }"
+                    >
                         <v-form-widget :designer="designer"></v-form-widget>
                     </el-scrollbar>
                 </el-main>
@@ -33,8 +36,9 @@ import WidgetPanel from './widget-panel/index.vue'
 import SettingPanel from './setting-panel/index.vue'
 import ToolbarPanel from './toolbar-panel/index.vue'
 import VFormWidget from './form-widget/index.vue'
+import { addWindowResizeHandler } from '../../utils/util'
 
-import {createDesigner} from './designer'
+import { createDesigner } from './designer'
 
 export default {
     name: 'XFormDesigner',
@@ -46,15 +50,30 @@ export default {
     },
     data() {
         return {
-            designer: createDesigner()
+            designer: createDesigner(),
+            scrollerHeight: 0,
         }
-    }
+    },
+    mounted() {
+        this.scrollerHeight = window.innerHeight - 72 - 36 + 'px'
+        addWindowResizeHandler(() => {
+            this.$nextTick(() => {
+                this.scrollerHeight = window.innerHeight - 72 - 36 + 'px'
+            })
+        })
+    },
 }
 </script>
 
 <style scoped lang="scss">
 .el-container.main-container {
     background-color: #fff;
+
+    ::v-deep aside {
+        margin: 0;
+        padding: 0;
+        background: inherit;
+    }
 }
 
 .el-container.full-height {
@@ -121,7 +140,8 @@ div.main-title {
 }
 
 .container-scroll-bar {
-    ::v-deep .el-scrollbar__wrap {
+    ::v-deep .el-scrollbar__wrap,
+    ::v-deep .el-scrollbar__view {
         overflow-x: hidden;
     }
 }

@@ -4,7 +4,7 @@ import {
     generateId
 } from "@/utils/util"
 
-export function createDesigner(vueInstance) {
+export function createDesigner (vueInstance) {
     let defaultFormConfig = deepClone(getDefaultFormConfig())
 
     return {
@@ -28,17 +28,18 @@ export function createDesigner(vueInstance) {
             steps: []
         },
 
-        initDesigner(reseFormJson) {
-            this.widgeList = []
+        initDesigner (resetFormJson) {
+            this.widgetList = []
             this.formConfig = deepClone(defaultFormConfig)
 
-            if (!reseFormJson) {
+            if (!resetFormJson) {
                 // this.init
             }
         },
 
-        copyNewFieldWidget(origin) {
+        copyNewFieldWidget (origin) {
             let newWidget = deepClone(origin)
+            console.log(newWidget)
             let tempId = generateId()
 
             newWidget.id = newWidget.type.replace(/-/g, '') + tempId
@@ -46,13 +47,14 @@ export function createDesigner(vueInstance) {
             newWidget.options.label = newWidget.options.label || newWidget.type.toLowerCase()
 
             delete newWidget.displayName
+            console.log(this.widgetList)
+            // this.widgetList.push(newWidget)
             return newWidget
         },
 
-        addFieldByDbClick(widget) {
+        addFieldByDbClick (widget) {
             let newWidget = deepClone(widget)
-
-            this.widgeList.push(newWidget)  
+            this.widgetList.push(newWidget)
         }
     }
 }

@@ -7,11 +7,11 @@ export const deepClone = function (origin) {
 }
 
 export const generateId = function () {
-    return Math.floor(Math.random() * 100000 + Math.random() * 20000 + Math.random() * 5000);
-};
+    return Math.floor(Math.random() * 100000 + Math.random() * 20000 + Math.random() * 5000)
+}
 
 
-export function getDefaultFormConfig() {
+export function getDefaultFormConfig () {
     return {
         modelName: 'formData',
         refName: 'xForm',
@@ -27,5 +27,17 @@ export function getDefaultFormConfig() {
 
         onFormMounted: '',
         onFormDataChange: ''
+    }
+}
+
+export const addWindowResizeHandler = function (handler) {
+    let oldHandler = window.onresize
+    if (typeof window.onresize != 'function') {
+        window.onresize = handler
+    } else {
+        window.onresize = function () {
+            oldHandler()
+            handler()
+        }
     }
 }
