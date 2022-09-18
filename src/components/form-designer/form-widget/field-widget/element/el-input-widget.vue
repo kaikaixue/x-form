@@ -5,27 +5,26 @@
 </template>
 
 <script>
-import elFormItemWrapper from './el-form-item-wrapper.vue';
+import elFormItemWrapper from './el-form-item-wrapper.vue'
 
 export default {
     name: 'el-input-widget',
     components: {
-        elFormItemWrapper
+        elFormItemWrapper,
     },
     props: {
         field: Object,
-        designer: Object
+        designer: Object,
+        a: Array
     },
     data() {
         return {
-            fieldModel: ''
+            fieldModel: '',
         }
     },
     created() {
-    }
+    },
 }
 </script>
 
-<style scoped less="scss">
-
-</style>
+<style scoped less="scss"></style>

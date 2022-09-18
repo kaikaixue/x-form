@@ -45,7 +45,7 @@ export default {
     },
     components: {
         Draggable,
-        ...elementFieldComponents
+        ...elementFieldComponents,
     },
     data() {
         return {
@@ -53,12 +53,11 @@ export default {
             scrollerHeight: 0,
         }
     },
-    mounted() {
-    },
+    mounted() {},
     methods: {
         getWidgetName(widget) {
             // return widget.type
-            return this.type + '-' + widget.type + '-widget' 
+            return this.type + '-' + widget.type + '-widget'
         },
         onDragStart() {},
         onDragEnd() {},
