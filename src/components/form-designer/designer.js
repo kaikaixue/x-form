@@ -75,6 +75,47 @@ export function createDesigner (vueInstance) {
             this.selectedId = null
             this.selectedWidgetName = null
             this.selectWidget = {}
+        },
+
+        moveUpWidget(parentList, indexOfParentList) {
+            if (!parentList) {
+                return
+            }
+
+            let tempWidget = parentList[indexOfParentList]
+            parentList.splice(indexOfParentList, 1)
+            parentList.splice(indexOfParentList - 1, 0, tempWidget)
+        },
+
+        moveDownWidget(parentList, indexOfParentList) {
+            if (!parentList) {
+                return
+            }
+
+            let tempWidget = parentList[indexOfParentList]
+            parentList.splice(indexOfParentList, 1)
+            parentList.splice(indexOfParentList + 1, 0, tempWidget)
+        },
+
+        removeFieldWidget(parentList, indexOfParentList) {
+            if (!parentList) {
+                return
+            }
+    
+            let nextSelected = null
+    
+            if (parentList.length == 1) {
+                if (this.parentWidget) {
+                    nextSelected = this.parentWidget
+                }
+            } else if (parentList === (1 + indexOfParentList)) {
+                nextSelected = parentList[indexOfParentList - 1]
+            } else {
+                nextSelected = parentList[indexOfParentList + 1]
+            }
+    
+            parentList.splice(indexOfParentList, 1)
+            this.setSelected(nextSelected)
         }
     }
 }

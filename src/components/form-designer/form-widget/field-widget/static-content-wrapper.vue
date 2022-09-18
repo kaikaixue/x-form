@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: 'static-content-wrappper'
+    name: 'static-content-wrapper'
 }
 </script>
 
