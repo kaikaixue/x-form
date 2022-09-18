@@ -9,13 +9,19 @@ export const basicFields = [
         type: 'input',
         title: '单行输入',
         icon: 'el-icon-phone-outline',
-        formItemFlag: true
+        formItemFlag: true,
+        options: {
+            name: ''
+        }
     },
     {
         id: 1,
         type: 'button',
         title: '按钮',
         icon: 'el-icon-phone-outline',
-        formItemFlag: false
+        formItemFlag: false,
+        options: {
+            name: ''
+        }
     }
 ]
