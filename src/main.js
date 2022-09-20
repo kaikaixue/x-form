@@ -11,7 +11,12 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 
+const requireComponent = require.context('/src/components/form-designer/form-widget/container-widget', false, /\w+\.vue$/)
 
+requireComponent.keys().map(fileName => {
+    let comp = requireComponent(fileName).default
+    app.component(comp.name, comp)
+})
 
 app.use(ElementPlus)
 

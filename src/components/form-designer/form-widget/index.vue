@@ -18,16 +18,29 @@
                 class="form-widget-list"
             >
                 <template #item="{ element, index }">
-                    <component
-                        :is="getWidgetName(element)"
-                        :field="element"
-                        :designer="designer"
-                        :key="element.id"
-                        :parentList="designer.widgetList"
-                        :indexOfParentList="index"
-                        :parentWidget="null"
-                        :designState="true"
-                    ></component>
+                    <template v-if="element.category === 'container'">
+                        <component
+                            :is="getWidgetName(element)"
+                            :widget="element"
+                            :designer="designer"
+                            :key="element.id"
+                            :parentList="designer.widgetList"
+                            :index-of-parent-list="index"
+                            :parent-widget="null"
+                        ></component>
+                    </template>
+                    <template v-else>
+                        <component
+                            :is="getWidgetName(element)"
+                            :field="element"
+                            :designer="designer"
+                            :key="element.id"
+                            :parentList="designer.widgetList"
+                            :indexOfParentList="index"
+                            :parentWidget="null"
+                            :designState="true"
+                        ></component>
+                    </template>
                 </template>
             </Draggable>
         </el-form>

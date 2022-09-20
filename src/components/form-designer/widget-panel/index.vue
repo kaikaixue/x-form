@@ -1,6 +1,6 @@
 <template>
     <el-scrollbar class="side-scroll-bar">
-        <el-collapse class="widget-collapse" value="activeName">
+        <el-collapse class="widget-collapse" v-model="activeName">
             <el-collapse-item name="容器" title="容器">
                 <Draggable
                     tag="ul"
@@ -28,6 +28,10 @@
                                     "
                                     ><Loading
                                 /></el-icon>
+                                <!-- <svg-icon
+                                    :icon-class="element.icon"
+                                    class-name="color-svg-icon"
+                                /> -->
                                 {{ element.title }}
                             </span>
                         </div>
@@ -167,7 +171,15 @@ export default {
     },
     methods: {
         loadWidgets() {
-            this.basicFields = basicFields
+            // this.basicFields = this.basicFields.map((con) => {
+            //     return {
+            //         ...con,
+            //         displayName: this.i18n2t(
+            //             `designer.widgetLabel.${con.type}`,
+            //             `extension.widgetLabel.${con.type}`,
+            //         ),
+            //     }
+            // })
         },
         handleBasicFieldWidgetClone(origin) {
             return this.designer.copyNewFieldWidget(origin)
@@ -188,6 +200,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.color-svg-icon {
+    color: #409eff;
+}
+
 .el-scrollbar.side-scroll-bar {
     ::v-deep .el-scrollbar__wrap {
         overflow-x: hidden;

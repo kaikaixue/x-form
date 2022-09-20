@@ -1,15 +1,19 @@
 // widget 配置
 export const container = [
     {
-        id: 0,
-        type: 'input',
-        title: '单行输入',
-        icon: 'el-icon-phone-outline',
-        formItemFlag: true,
+        type: 'grid',
+        category: 'container',
+        icon: 'grid',
+        title: '栅格',
+        cols: [],
         options: {
-            name: ''
+            name: '',
+            hidden: false,
+            gutter: 12, // 栅格间隔,
+            colHeight: null,
+            customClass: ''
         }
-    },
+    }
 ]
 
 export const basicFields = [
@@ -17,7 +21,7 @@ export const basicFields = [
         id: 1,
         type: 'input',
         title: '单行输入',
-        icon: 'el-icon-phone-outline',
+        icon: 'text-field',
         formItemFlag: true,
         options: {
             name: ''
