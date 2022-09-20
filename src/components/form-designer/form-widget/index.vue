@@ -17,16 +17,16 @@
                 itemKey="id"
                 class="form-widget-list"
             >
-                <template #item="{ element }">
+                <template #item="{ element, index }">
                     <component
                         :is="getWidgetName(element)"
                         :field="element"
                         :designer="designer"
                         :key="element.id"
-                        :parent-list="designer.widgetList"
-                        :index-of-parent-list="index"
-                        :parent-widget="null"
-                        :design-state="true"
+                        :parentList="designer.widgetList"
+                        :indexOfParentList="index"
+                        :parentWidget="null"
+                        :designState="true"
                     ></component>
                 </template>
             </Draggable>

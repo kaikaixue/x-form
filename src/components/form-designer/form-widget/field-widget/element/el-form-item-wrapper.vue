@@ -8,20 +8,27 @@
             <slot></slot>
         </el-form-item>
 
-        <template v-if="!!this.designer">
+        <template v-if="this.designer">
             <div class="field-action" v-if="designer.selectedId === field.id">
                 <el-icon color="white">
-                    <Back />
+                    <Back @click.stop="selectParentWidget(field)" />
                 </el-icon>
                 <el-icon color="white">
-                    <Top />
+                    <Top @click.stop="moveUpWidget" />
                 </el-icon>
                 <el-icon color="white">
-                    <Bottom />
+                    <Bottom @click.stop="moveDownWidget" />
                 </el-icon>
                 <el-icon color="white">
-                    <Delete />
+                    <Delete @click.stop="removeFieldWidget" />
                 </el-icon>
+            </div>
+
+            <div class="drag-handler" v-if="designer.selectedId === field.id">
+                <el-icon>
+                    <Rank />
+                </el-icon>
+                {{ field.type }}
             </div>
         </template>
     </div>
@@ -33,6 +40,9 @@ export default {
     props: {
         field: Object,
         designer: Object,
+        parentWidget: Object,
+        parentList: Array,
+        indexOfParentList: Number,
     },
     computed: {
         selected: function () {
@@ -46,6 +56,28 @@ export default {
                 this.designer.setSelected(field)
             }
         },
+        selectParentWidget() {
+            if (this.parentWidget) {
+                this.designer.setSelected(this.parentWidget)
+            } else {
+                this.designer.clearSelected()
+            }
+        },
+        moveUpWidget() {
+            this.designer.moveUpWidget(this.parentList, this.indexOfParentList)
+        },
+        moveDownWidget() {
+            this.designer.moveDownWidget(
+                this.parentList,
+                this.indexOfParentList,
+            )
+        },
+        removeFieldWidget() {
+            this.designer.removeFieldWidget(
+                this.parentList,
+                this.indexOfParentList,
+            )
+        },
     },
 }
 </script>
@@ -53,7 +85,6 @@ export default {
 <style scoped lang="scss">
 .field-wrapper {
     position: relative;
-
     .field-action {
         position: absolute;
         bottom: 0;
@@ -66,6 +97,30 @@ export default {
         line-height: 22px;
         background: #409eff;
         z-index: 9;
+    }
+
+    .drag-handler {
+        position: absolute;
+        top: 0;
+        left: -1px;
+        height: 20px;
+        line-height: 20px;
+        opacity: 0.5;
+        background: #409eff;
+        z-index: 9;
+
+        el-icon {
+            font-size: 12px;
+            font-style: normal;
+            color: #fff;
+            margin: 4px;
+            cursor: move;
+        }
+
+        &:hover {
+            opacity: 1;
+            background: #409eff;
+        }
     }
 }
 
