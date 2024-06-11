@@ -1,3 +1,4 @@
+<!-- 左侧面板 -->
 <template>
     <el-scrollbar class="side-scroll-bar">
         <el-collapse class="widget-collapse" v-model="activeName">

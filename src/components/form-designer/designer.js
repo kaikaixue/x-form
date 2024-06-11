@@ -6,7 +6,7 @@ import {
 } from "@/utils/util"
 import { advancedFields, basicFields, container, customFields } from './widget-panel/widgetsConfig'
 
-export function createDesigner (vueInstance) {
+export function createDesigner(vueInstance) {
     let defaultFormConfig = deepClone(getDefaultFormConfig())
 
     return {
@@ -30,7 +30,7 @@ export function createDesigner (vueInstance) {
             steps: []
         },
 
-        initDesigner (resetFormJson) {
+        initDesigner(resetFormJson) {
             this.widgetList = []
             this.formConfig = deepClone(defaultFormConfig)
 
@@ -72,12 +72,12 @@ export function createDesigner (vueInstance) {
             return newWidget
         },
 
-        addFieldByDbClick (widget) {
+        addFieldByDbClick(widget) {
             let newWidget = deepClone(widget)
             this.widgetList.push(newWidget)
         },
 
-        setSelected (selected) {
+        setSelected(selected) {
             if (!selected) {
                 this.clearSelected()
                 return
@@ -91,7 +91,7 @@ export function createDesigner (vueInstance) {
             }
         },
 
-        clearSelected () {
+        clearSelected() {
             this.selectedId = null
             this.selectedWidgetName = null
             // this.selectedWidget = {}

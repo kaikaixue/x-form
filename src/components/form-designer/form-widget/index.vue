@@ -1,3 +1,4 @@
+<!-- 中心面板 -->
 <template>
     <div class="form-widget-container">
         <el-form class="full-height-width widget-form">
