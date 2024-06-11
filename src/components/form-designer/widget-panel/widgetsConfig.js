@@ -1,6 +1,7 @@
 // widget 配置
 export const container = [
     {
+        id: 100,
         type: 'grid',
         category: 'container',
         icon: 'grid',
@@ -13,6 +14,27 @@ export const container = [
             colHeight: null,
             customClass: ''
         }
+    },
+    {
+        id: 101,
+        type: 'grid-col',
+        category: 'container',
+        icon: 'grid-col',
+        internal: true, // 是否内部
+        widgetList: [],
+        options: {
+            name: '',
+            hidden: false,
+            span: 12,   // 栅格占据的列数
+            offset: 0,  // 栅格左侧的间隔格数
+            push: 0, // 栅格向右移动格数
+            pull: 0, // 栅格向左移动格数
+            responsive: false, // 响应？？？
+            md: 12,   // 响应式栅格数
+            sm: 12,
+            xs: 12,
+            customClass: '', // 自定义css类名
+        }
     }
 ]
 
@@ -24,7 +46,16 @@ export const basicFields = [
         icon: 'text-field',
         formItemFlag: true,
         options: {
-            name: ''
+            name: '',
+            label: '输入框',
+            labelWidth: null,
+            labelAlign: 'label-left-align',
+            columnWidth: '200px',
+            customClass: '',
+            type: 'text',
+            defaultValue: '',
+            placeholder: '',
+            size: ''
         }
     },
     {

@@ -13,19 +13,25 @@
             </el-aside>
             <el-container class="center-layout-container">
                 <el-header class="toolbar-header">
-                    <toolbar-panel></toolbar-panel>
+                    <toolbar-panel :designer="designer"></toolbar-panel>
                 </el-header>
                 <el-main class="form-widget-main">
                     <el-scrollbar
                         class="container-scroll-bar"
                         :style="{ height: scrollerHeight }"
                     >
-                        <v-form-widget :designer="designer"></v-form-widget>
+                        <v-form-widget
+                            :designer="designer"
+                            :form-config="designer.formConfig"
+                        ></v-form-widget>
                     </el-scrollbar>
                 </el-main>
             </el-container>
             <el-aside>
-                <setting-panel></setting-panel>
+                <setting-panel
+                    :designer="designer"
+                    :selected-widget="designer.selectedWidget"
+                ></setting-panel>
             </el-aside>
         </el-container>
     </el-container>
@@ -48,9 +54,32 @@ export default {
         ToolbarPanel,
         VFormWidget,
     },
+    props: {
+        designerConfig: {
+            type: Object,
+            default: () => {
+                return {
+                    clearDesignerButton: true, // 是否显示清空按钮
+                    previewFormButton: true, // 是否显示预览按钮
+                    exportCodeButton: true, //  是否显示导出代码按钮
+                    importJsonButton: true, // 导入Json
+                    exportJsonButton: true, // 导出Json
+                    toolbarMaxWidth: 420, // 工具栏最大宽
+                    toolbarMinWidth: 300, // 工具栏最小宽
+
+                    resetFormJson: false, // 是否在设计器初始化时将表单内容重置为空
+                }
+            },
+        },
+    },
+    provide() {
+        return {
+            getDesignerConfig: () => this.designerConfig,
+        }
+    },
     data() {
         return {
-            designer: createDesigner(),
+            designer: createDesigner(this),
             scrollerHeight: 0,
         }
     },

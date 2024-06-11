@@ -20,11 +20,11 @@
                 <template #item="{ element, index }">
                     <template v-if="element.category === 'container'">
                         <component
-                            :is="getWidgetName(element)"
+                            :is="getContainerName(element)"
                             :widget="element"
                             :designer="designer"
                             :key="element.id"
-                            :parentList="designer.widgetList"
+                            :parent-list="designer.widgetList"
                             :index-of-parent-list="index"
                             :parent-widget="null"
                         ></component>
@@ -55,22 +55,37 @@ export default {
     name: 'form-widget',
     props: {
         designer: Object,
+        formConfig: Object,
     },
+    inject: ['getDesignerConfig'],
     components: {
         Draggable,
         ...elementFieldComponents,
+    },
+    provide() {
+        return {
+            refList: this.widgetRefList,
+            formConfig: this.formConfig,
+        }
     },
     data() {
         return {
             type: 'el',
             scrollerHeight: 0,
+            widgetRefList: {},
         }
+    },
+    created() {
+        this.designer.initDesigner(this.getDesignerConfig().resetFormJson)
     },
     mounted() {},
     methods: {
         getWidgetName(widget) {
             // return widget.type
             return this.type + '-' + widget.type + '-widget'
+        },
+        getContainerName(widget) {
+            return widget.type + '-widget'
         },
         onDragStart() {},
         onDragEnd() {},
@@ -80,11 +95,11 @@ export default {
             if (this.designer.widgetList[newIndex]) {
                 this.designer.setSelected(this.designer.widgetList[newIndex])
             }
-            // this.designer.emitHistoryChange()
+            this.designer.emitHistoryChange()
             // this.designer.emitEvent('field-selected', null)
         },
         onDragUpdate() {
-            // this.designer.emitHistoryChange()
+            this.designer.emitHistoryChange()
         },
         checkFieldMove() {
             return true

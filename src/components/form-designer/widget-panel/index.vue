@@ -6,7 +6,7 @@
                     tag="ul"
                     :list="container"
                     :group="{ name: 'dragGroup', pull: 'clone', put: false }"
-                    :clone="handleBasicFieldWidgetClone"
+                    :clone="handleContainerWidgetClone"
                     ghost-class="ghost"
                     :sort="false"
                     :move="checkFieldMove"
@@ -19,6 +19,7 @@
                             class="container-widget-item"
                             :title="element.title"
                             @dblclick="addFieldByDbClick(element)"
+                            v-if="!element.internal"
                         >
                             <span>
                                 <el-icon
@@ -180,6 +181,9 @@ export default {
             //         ),
             //     }
             // })
+        },
+        handleContainerWidgetClone(origin) {
+            return this.designer.copyNewContainerWidget(origin)
         },
         handleBasicFieldWidgetClone(origin) {
             return this.designer.copyNewFieldWidget(origin)
